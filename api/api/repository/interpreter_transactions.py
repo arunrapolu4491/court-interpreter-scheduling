@@ -1,3 +1,5 @@
+import os
+
 from starlette import status
 from api.repository.geo_transactions import get_next_update_date
 from models.interpreter_model import InterpreterModel
@@ -293,3 +295,7 @@ def apply_address_changes(old_interpreter, interpreter_request):
         interpreter_request = add_geo_coordinates(interpreter_request)
     
     return  interpreter_request
+
+def get_filepath_of_excel_sheet_have_interpreters_data(db: Session):
+    parent_dir_path = os.path.dirname(os.path.realpath(__file__))
+    return parent_dir_path + '/interpreter_transactions.py'
